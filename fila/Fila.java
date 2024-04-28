@@ -2,24 +2,17 @@ package semana2.fila;
 
 public class Fila {
 	private Nodo inicio;
-
-
-
 	public Fila() {
 		this.inicio = null;
 	}
-
 	public void setInicio(Nodo inicio) {
 		this.inicio = inicio;
 	}
-	
 	public void insereListaVazia(int valor) {
 		Nodo novo = new Nodo();
 		novo.setValor(valor);
-		novo.setProx(null);
-		
+		novo.setProx(null);	
 		this.inicio = novo;
-		
 	}
 	
 	public Nodo getInicio() {
@@ -27,9 +20,7 @@ public class Fila {
 	}
 
 	public void insere(int valor) {
-		Nodo novo = new Nodo();
-		novo.setValor(valor);
-		novo.setProx(null);
+		Nodo novo = new Nodo(valor, null);
 		if(this.inicio == null)
 			this.inicio = novo;
 		else {
@@ -47,34 +38,11 @@ public class Fila {
 		else {
 			Nodo aux = this.inicio;
 			while(aux !=null) {
-				System.out.println("Valor: " +aux.getValor());
+				System.out.println("Valor da fila: " +aux.getValor());
 				aux = aux.getProx();
 			}
 		}
 	}
-	/*
-	public void insereInicio(int valor) {
-		Nodo novo = new Nodo();
-		novo.setValor(valor);
-		novo.setProx(this.inicio);
-		this.inicio = novo;
-	}
-	
-	public void RemoverFinal() {
-		Nodo aux;
-		if(this.inicio !=null)
-			if(this.inicio.getProx()==null)
-				this.inicio = null;
-			else {
-				aux = inicio;
-				while(aux.getProx().getProx() != null)
-					aux = aux.getProx();
-				aux.setProx(null);
-			}
-	}
-	*/
-	
-	
 	public void pesquisaValor(int valor) {
 		int contador = 0;
 		if (this.inicio == null) {
@@ -86,6 +54,7 @@ public class Fila {
 			while (aux != null && !achou) {
 				contador ++;
 				if(valor == aux.getValor()) {
+				System.out.println("Valor Encontrado!\n Nodos passados: "+contador);
 				achou = true;
 				break;
 				}
@@ -93,12 +62,9 @@ public class Fila {
 				aux = aux.getProx();
 				}
 			}
-			if (achou) {
-				System.out.println("Valor Encontrado!\n Nodos passados: "+contador);
+			if (!achou) {
+				System.out.println("Valor Não Encontrado!\n Nodos passados: "+contador);
 			}		
-			else {
-			System.out.println("Valor Não Encontrado!\n Nodos passados: "+contador);
-			}
 		}
 	}
 	
